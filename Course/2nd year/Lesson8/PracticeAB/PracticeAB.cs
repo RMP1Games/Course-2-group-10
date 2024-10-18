@@ -1,4 +1,6 @@
 ﻿namespace PracticeAB;
+using System;
+using System.Linq;
 
 class Program
 {
@@ -20,7 +22,6 @@ class Program
     }
 
     //3
-    
     static string reverseText(string text3)
     {
         char[] charArray = text3.ToCharArray();
@@ -28,10 +29,14 @@ class Program
         return new string(charArray);
     }
 
-    //4
+    //4 how to do this
+    // static int maxNumber(int[] array4)
+    // {
+    //     int a4 = array.Max(array4);
+    //     return a4;
+    // }
 
-
-    // 5
+    // // 5
     static long payPerYear(int a5)
     {
         return a5 * 12;
@@ -63,6 +68,12 @@ class Program
         Console.WriteLine("Enter a text");
         string text3 = Console.ReadLine();
         Console.WriteLine(reverseText(text3));
+
+        // //4
+        // Console.WriteLine("Enter some numbers");
+        // //we think i can do this yeah 100%
+        // int [] array4 = {1, 2, 5, 8, 1, 23, 99};
+        // Console.WriteLine();
 
         // 5
         Console.WriteLine("Enter a number of your pay per month.");

@@ -6,12 +6,12 @@ namespace LessonProject
     {
         static Task1()
         {
-            Console.WriteLine("Задача 1: Найти в массиве целых чисел первый подмассив длиной N, сумма элементов которого максимальна. Вывести найденный подмассив.");
-            Console.WriteLine("РЕШЕНИЕ:");
+            // Console.WriteLine("Задача 1: Найти в массиве целых чисел первый подмассив длиной N, сумма элементов которого максимальна. Вывести найденный подмассив.");
+            // Console.WriteLine("РЕШЕНИЕ:");
+            //int[] array1 = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+            //int a = 4;
+            //for (int i = 0, i < array1.Length, i++ );
 
-            //решайте задачу здесь
-
-            //не выходя за пределы
         }
     }
 
@@ -21,10 +21,11 @@ namespace LessonProject
         {
             Console.WriteLine("\n\n\nЗадача 2: Создать массив случайных чисел, сортировать его по возрастанию, затем найти количество уникальных чисел. Вывести отсортированный массив и количество уникальных чисел.");
             Console.WriteLine("РЕШЕНИЕ:");
-
-            //решайте задачу здесь
-
-            //не выходя за пределы
+            int[] array2 = {1, 2, 80, 75, 61, 34, 2, 75};
+            Array.Sort(array2);
+            int uniqueCount = array2.Distinct().Count();
+            foreach (var i in array2) {Console.WriteLine(i);}
+            Console.WriteLine(uniqueCount);
         }
     }
 
