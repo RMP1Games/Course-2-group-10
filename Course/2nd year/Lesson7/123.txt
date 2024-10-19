@@ -1,0 +1,30 @@
+
+    static void QuickSort(int[] arr12)
+    {//{56, 912, 542, 66, 1, 23}
+        int midIndex = 0;
+        int mid = arr12[midIndex];//56
+        int z12 = mid;
+        int leftIndex = 1;
+        int left = arr12[leftIndex];//912
+        int rightIndex = arr12.Length - 1;
+        int right = arr12[rightIndex];//23
+        //поиск 1 числа, которое больше чем mid
+        while ((left < mid) && (leftIndex < rightIndex))
+        leftIndex++;
+        //поиск 1 числа, которое меньше mid
+        while ((right > mid) && (leftIndex < rightIndex))
+        rightIndex--;
+        if ((left > mid) && (right < mid) && (leftIndex < rightIndex))
+        {
+            int x12 = left;
+            arr12 [leftIndex] = right;
+            arr12 [rightIndex] = x12;
+            QuickSort(arr12);
+        }//56, 23, 542, 66, 1, 912  left 912 right 23
+        if (rightIndex < leftIndex)
+        {
+            int y12 = mid;
+            arr12 [midIndex] = right;
+            arr12 [rightIndex] = y12;
+        }
+    }

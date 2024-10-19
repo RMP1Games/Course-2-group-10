@@ -58,14 +58,46 @@ internal class Program
     // }
 
     //6
-    static bool palindrom(string text6)
+    // static bool palindrom(string text6)
+    // {
+    //     char[] charArray = text6.ToCharArray();
+    //     Array.Reverse(charArray);
+    //     string text62 = new string(charArray);
+    //     if (text6 == text62)
+    //     return true; 
+    //     else return false;
+    // }
+
+    //7-11 idk what i need to do
+
+    //12
+    static int[] QuickSort(int[] arr12, int leftIndex, int rightIndex)
     {
-        char[] charArray = text6.ToCharArray();
-        Array.Reverse(charArray);
-        string text62 = new string(charArray);
-        if (text6 == text62)
-        return true; 
-        else return false;
+        int midIndex = 0;
+        int mid = arr12[midIndex];
+        int left = arr12[leftIndex];
+        int right = arr12[rightIndex];
+        //поиск 1 числа, которое больше чем mid
+        if (left < mid)
+        return QuickSort(arr12, leftIndex + 1, rightIndex);
+        //поиск 1 числа, которое меньше mid
+        if (right > mid)
+        return QuickSort(arr12, leftIndex, rightIndex - 1);
+
+        if ((left > mid) && (right < mid) && (leftIndex < rightIndex))
+        {
+            arr12 [leftIndex] = right;
+            arr12 [rightIndex] = left;
+            return QuickSort(arr12, leftIndex, rightIndex);
+        }
+
+        if (rightIndex < leftIndex)
+        {
+            arr12 [midIndex] = right;
+            arr12 [rightIndex] = mid;
+            return arr12;
+        }
+        return arr12;
     }
     static void Main(string[] args)
     {
@@ -97,8 +129,23 @@ internal class Program
         // Console.WriteLine ("NOD is " + NOD(a, b));
 
         //6
-        Console.WriteLine ("Enter text for what? for because");
-        string text6 = Console.ReadLine();
-        Console.WriteLine(palindrom(text6));
+        // Console.WriteLine ("Enter text for what? for because");
+        // string text6 = Console.ReadLine();
+        // Console.WriteLine(palindrom(text6));
+
+        //7-11 idk what i need to do
+
+        //12
+        int[] arr12 = {56, 912, 546, 1, 23, 9};
+        int leftIndex = 1;
+        int rightIndex = arr12.Length - 1;
+        QuickSort(arr12, leftIndex, rightIndex);
+        int i12 = 0;
+        while (i12 < arr12.Length)
+        {
+            Console.WriteLine(arr12[i12]);
+            i12 += 1;
+        }
+
     }
 }
