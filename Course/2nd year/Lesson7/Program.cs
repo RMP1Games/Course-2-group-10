@@ -71,34 +71,36 @@ internal class Program
     //7-11 idk what i need to do
 
     //12
-    static int[] QuickSort(int[] arr12, int leftIndex, int rightIndex)
-    {
-        int midIndex = 0;
-        int mid = arr12[midIndex];
-        int left = arr12[leftIndex];
-        int right = arr12[rightIndex];
-        //поиск 1 числа, которое больше чем mid
-        if (left < mid)
-        return QuickSort(arr12, leftIndex + 1, rightIndex);
-        //поиск 1 числа, которое меньше mid
-        if (right > mid)
-        return QuickSort(arr12, leftIndex, rightIndex - 1);
+    // static int[] QuickSort(int[] arr12, int leftIndex, int rightIndex)
+    // {
+    //     int midIndex = 0;
+    //     int mid = arr12[midIndex];
+    //     int left = arr12[leftIndex];
+    //     int right = arr12[rightIndex];
+    //     //поиск 1 числа, которое больше чем mid
+    //     if (left < mid)
+    //     return QuickSort(arr12, leftIndex + 1, rightIndex);
 
-        if ((left > mid) && (right < mid) && (leftIndex < rightIndex))
-        {
-            arr12 [leftIndex] = right;
-            arr12 [rightIndex] = left;
-            return QuickSort(arr12, leftIndex, rightIndex);
-        }
+    //     //поиск 1 числа, которое меньше mid
+    //     if (right > mid)
+    //     return QuickSort(arr12, leftIndex, rightIndex - 1);
 
-        if (rightIndex < leftIndex)
-        {
-            arr12 [midIndex] = right;
-            arr12 [rightIndex] = mid;
-            return arr12;
-        }
-        return arr12;
-    }
+    //     //перестановка типа
+    //     if ((left > mid) && (right < mid) && (leftIndex < rightIndex))
+    //     {
+    //         arr12 [leftIndex] = right;
+    //         arr12 [rightIndex] = left;
+    //         return QuickSort(arr12, leftIndex, rightIndex);
+    //     }
+    //     //замена right и mid
+    //     if (rightIndex < leftIndex)
+    //     {
+    //         arr12 [midIndex] = right;
+    //         arr12 [rightIndex] = mid;
+    //         return arr12;
+    //     }
+    //     return arr12;
+    // }
     static void Main(string[] args)
     {
         //Factorial
@@ -136,16 +138,18 @@ internal class Program
         //7-11 idk what i need to do
 
         //12
-        int[] arr12 = {56, 912, 546, 1, 23, 9};
-        int leftIndex = 1;
-        int rightIndex = arr12.Length - 1;
-        QuickSort(arr12, leftIndex, rightIndex);
-        int i12 = 0;
-        while (i12 < arr12.Length)
-        {
-            Console.WriteLine(arr12[i12]);
-            i12 += 1;
-        }
+        // int[] arr12 = {56, 912, 546, 1, 23, 9};
+        // int leftIndex = 1;
+        // int rightIndex = arr12.Length - 1;
+        // QuickSort(arr12, leftIndex, rightIndex);
+        // int i12 = 0;
+        // while (i12 < arr12.Length)
+        // {
+        //     Console.WriteLine(arr12[i12]);
+        //     i12 += 1;
+        // }
 
+        //
+        
     }
 }
