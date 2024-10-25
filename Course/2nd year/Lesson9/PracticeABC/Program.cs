@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Reflection.Metadata.Ecma335;
 using System.Runtime.Loader;
 
 namespace SimpleBD
@@ -74,13 +75,7 @@ namespace SimpleBD
         {
             Console.WriteLine("Hello, my name is " + name);
         }
-        // public void AgeChecker(int Age)
-        // {
-        //     if (Age < 0)
-        //     Console.WriteLine("Your age can't be smaller than 0.");
-        //     else
-        //     age = Age;
-        // }
+
         public Person (string Name, int Age)
         {
             name = Name;
@@ -89,6 +84,13 @@ namespace SimpleBD
             else
             age = Age;
         }
+    }
+
+    //Я не понимаю, в чем здесь ошибка, вроде все правильно, а консоль ругаеться
+    //There is no argument given that corresponds to the required parameter 'Name' of 'Person.Person(string, int)'[Ln 91, Col 15]
+        class Employee : Person
+    {
+        public string position;
     }
 
     class Program
