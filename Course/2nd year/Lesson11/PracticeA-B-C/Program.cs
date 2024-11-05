@@ -128,31 +128,47 @@ class SimpleDB
 
     public void SaveDB()
     {
-        Console.WriteLine("Funcional ne realizovan...");
-        //  practice B;
+        fileService.SaveToFile();
     }
 
     public void LoadDB()
     {
-        Console.WriteLine("Funcional ne realizovan...");
-        //  practice B;
+        fileService.LoadFromFile();
     }
     public void AddStudent(string name)
     {
-        Console.WriteLine("Funcional ne realizovan...");
-         //  practice A;
+        var student = new Student(name);
+        students[name] = student;
+        Console.WriteLine($"Add a student: {name}.");
     }
 
     public void RemoveStudent(string name)
     {
-        Console.WriteLine("Funcional ne realizovan...");
-         //  practice A;
+        if (students.Remove(name))
+            Console.WriteLine($"Student {name} deleted.");
+        else
+            Console.WriteLine($"Student {name} not found");
     }
 
     public void ShowStudentInfo(string name)
     {
-        Console.WriteLine("Funcional ne realizovan...");
-         //  practice A;
+        if (students.ContainsKey(name))
+        {
+            var student = students[name];
+            Console.WriteLine($"Name: {student.Name}");
+            Console.Write("Grades: ");
+            foreach (var info in student.Grades)
+            {
+                Console.WriteLine($"{info.Key}: {info.Value}");
+            }
+            Console.Write("Info about poseshaemost: ");
+            foreach (var info in student.Attendance)
+            {
+                Console.WriteLine($"{info.Key} - {info.Value}");
+            }
+        }
+        else
+        Console.WriteLine($"Student {name} not found.");
     }
 
     public Student GetStudent(string name)
@@ -177,7 +193,7 @@ class Program
         var db = new SimpleDB(); 
         while (true)
         {
-            Console.WriteLine("\n1. Dobavit' srudenta\n2. Pokazat studenta\n3. Udalit' studenta\n4. Dobavit' ocenku\n5. Dobavit' poseshaemost'\n6 Soxranit' bazu dannix\n0. Vixod");
+            Console.WriteLine("\n1. Add a student\n2. See info about student\n3. Delete student\n4. Add grade\n5. Add poseshaemost'\n6 Save info to DB\n7 Download info from DB\n0. Vixod");
             Console.Write("Vibor: ");
 
             if (!int.TryParse(Console.ReadLine(), out int choice))
@@ -189,35 +205,39 @@ class Program
             switch (choice)
             {
                 case 1:
-                    Console.Write("Vvedite imia studenta: ");
+                    Console.Write("Enter student name: ");
                     string name = Console.ReadLine();
                     db.AddStudent(name);
                     break;
                 case 2:
-                    Console.Write("Vvedite imia studenta (info): ");
+                    Console.Write("Enter student name (info): ");
                     name = Console.ReadLine();
                     db.ShowStudentInfo(name);
                     break;
                 case 3:
-                    Console.Write("Vvedite imia studenta dlia udalenia: ");
+                    Console.Write("Enter student name for delete: ");
                     name = Console.ReadLine();
                     db.RemoveStudent(name);
                     break;
                 case 4:
-                    Console.Write("Vvedite imia studenta (ocenka'): ");
+                    Console.Write("Enter student name (Grade): ");
                     name = Console.ReadLine();
                     Student student = db.GetStudent(name);
                     student?.AddGrade();
                     break;
                 case 5:
-                    Console.Write("Vvedite imia studenta (poseshaemost'): ");
+                    Console.Write("Enter student name (poseshaemost'): ");
                     name = Console.ReadLine();
                     student = db.GetStudent(name);
                     student?.AddAttendance();
                     break;
                 case 6:
-                    Console.WriteLine("Soxraneno...");
+                    Console.WriteLine("Saved.");
                     db.SaveDB();
+                    break;
+                case 7:
+                    Console.WriteLine("Downloaded.");
+                    db.LoadDB();
                     break;
 
                 case 0:
