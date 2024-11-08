@@ -9,7 +9,8 @@ public class Program
     }
     class CategoryAndProducts
     {
-
+        public string Category;
+        public string[] Products;
     }
 
     class Order
@@ -28,31 +29,38 @@ public class Program
     
     class Cart
     {
-
+        public string cart;
     }
 
     class Shipping
     {
-
+        public string method;
+        public int price;
+        public int estimated_days;
     }
 
     class Payment
     {
-
+        public string method;
+        public string status;
     }
 
     class Reviews
     {
-
+        public string product;
+        public int rating;
+        public string comment;
     }
 
     class Discounts
     {
-
+        public string product;
+        public string discount;
     }
     
     class Addresses
     {
-
+        public string type;
+        public string address;
     }
 }

@@ -1,0 +1,20 @@
+{
+    "logsOfBuyings": [
+        {
+            "Name": "BasketBall",
+            "TransactionID": "987123",
+            "BuyerID": "228666",
+            "SellerID": "1234567890",
+            "BuyerAdress": "лень придумать",
+            "DeliverTime": "5 days"
+        },
+        {
+            "Name": "Jacket",
+            "TransactionID": "6591314132",
+            "BuyerID": "7612351",
+            "SellerID": "312556",
+            "BuyerAdress": "лень придумать 2x",
+            "DeliverTime": "1 day"
+        }
+    ]
+}
