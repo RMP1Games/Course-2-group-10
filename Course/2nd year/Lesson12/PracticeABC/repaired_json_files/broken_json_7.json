@@ -1,0 +1,6 @@
+{
+    "payment": {
+        "method": "Credit Card",
+        "status": "Pending"
+    }
+}
