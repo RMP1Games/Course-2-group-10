@@ -23,3 +23,17 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
+namespace PracticeB
+{
+public class UserCredentials
+    {
+    public string name;
+    public string password;
+    public UserCredentials(string Name, string Password)
+    {
+        name = Name;
+        password = Password;
+    }
+    }
+}

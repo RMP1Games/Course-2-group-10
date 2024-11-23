@@ -1,6 +1,8 @@
 namespace PracticeA;
 
+using PracticeB;
 using Microsoft.AspNetCore.Mvc;
+using System.Text.Json;
 
 [ApiController]
 public class StoreController : ControllerBase
@@ -19,9 +21,22 @@ public class StoreController : ControllerBase
         }
     }
 
-    private static readonly List<Product> Items = new List<Product>();
+    public class User
+    {
+        public string Name { get; set; }
+        public string Password { get; set; }
 
-    [HttpGet]
+        public User(string name, string password)
+        {
+            Name = name;
+            Password = password;
+        }
+    }
+
+    private static readonly List<Product> Items = new List<Product>();
+    private static readonly List<User> Users = new List<User>();
+
+    [HttpPost]
     [Route("/store/updateprice")]
     public IActionResult UpdatePrice(string name, double newPrice)
     {
@@ -37,7 +52,7 @@ public class StoreController : ControllerBase
         }
     }
 
-    [HttpGet]
+    [HttpPost]
     [Route("/store/updatename")]
     public IActionResult UpdateName(string currentName, string newName)
     {
@@ -74,7 +89,7 @@ public class StoreController : ControllerBase
 
 
 
-    [HttpGet]
+    [HttpPost]
     [Route("/store/add")]
     public IActionResult Add(string name, double price, int stock)
     {
@@ -84,7 +99,7 @@ public class StoreController : ControllerBase
     }
 
 
-    [HttpGet]
+    [HttpPost]
     [Route("/store/delete")]
     public IActionResult Delete(string name)
     {
@@ -108,5 +123,35 @@ public class StoreController : ControllerBase
         return Ok(Items);
     }
 
+    //Практика B.Добавление пользователя
+    [HttpPost]
+    [Route("/store/addUser")]
+    public IActionResult AddUser(string name, string password)
+    {
+        var newuser = new User(name, password);
+        Users.Add(newuser);
+        return Ok(Users);
+    }
 
+    //Практика B.Аунтефикатор
+    [HttpPost]
+    [Route("/store/auth")]
+    public IActionResult Auth(string name, string password)
+    {
+        User user = Users.FirstOrDefault(p => p.Name == name);
+        if (user != null)
+        {
+            if (user.Name == name)
+            {
+                if (user.Password == password)
+                return Ok($"User {user.Name} is authorized.");
+                else
+                return NotFound($"User {name} authorized, but you write wrong password.");
+            }
+            else
+            return NotFound($"User {name} not found");
+        }
+        else
+        return NotFound($"User {name} not found");
+    }
 }
