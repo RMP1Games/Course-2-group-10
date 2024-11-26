@@ -47,6 +47,7 @@ public class StoreController : ControllerBase
     private List<Product> Items = new List<Product>();
 
     // поле с путем до базы данных 
+    string toData = "DataBase.json";
 
     public StoreController()
     {
@@ -120,8 +121,8 @@ public class StoreController : ControllerBase
     [Route("/store/add")]
     public IActionResult Add([FromBody] Product newProduct)
     { 
-        Items.Add(newProduct);
-        // запись
+        Product product = new Product(newProduct.Name, newProduct.Price, newProduct.Stock);
+        Items.Add(product);
         return Ok(Items);
     }
 
@@ -150,11 +151,13 @@ public class StoreController : ControllerBase
 
     private void ReadDataFromFile()
     {
-        // опишу логику
+        string json = System.IO.File.ReadAllText(toData);
+        Items = JsonSerializer.Deserialize<List<Product>>(json);
     }
 
     private void WriteDataToFile()
     {
-        // опишу логику
+        string json = JsonSerializer.Serialize(Items);
+        System.IO.File.WriteAllText(toData, json);
     }
 }
