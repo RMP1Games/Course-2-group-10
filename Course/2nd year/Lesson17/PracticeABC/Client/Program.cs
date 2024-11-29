@@ -33,7 +33,7 @@ class Program
             var client = new HttpClient();
             var response = client.GetAsync(url).Result;
             if (response.IsSuccessStatusCode)
-            {
+            { //Я не понимаю, что не так...
                 var a = response.Content.ReadAsStringAsync().Result;
                 List<Product> text2 = JsonSerializer.Deserialize<List<Product>>(a);
                 foreach (var b in text2)
