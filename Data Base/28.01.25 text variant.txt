@@ -1,0 +1,123 @@
+--
+--
+--Я НЕ ПОНЯЛ КАК ДОЛЖНЫ ВЫГЛЯДЕТЬ ТАБЛИЦЫ И ИЗ-ЗА ЭТОГО ДАЛЕЕ НЕ СМОГ НОРМАЛЬНО ВЫПОЛНЯТЬ НЕКОТОРЫЕ ЗАДАНИЯ ИЗВИНИТЕ
+--там ниже в коде есть пару заметок, прочитайте пожааалуйста
+--
+--
+--
+-- 
+--CREATE TABLE teachers(
+--id INTEGER PRIMARY KEY AUTOINCREMENT,
+-- TEXT NOT NULL
+--);
+
+--CREATE TABLE classes(
+--id INTEGER PRIMARY KEY AUTOINCREMENT,
+--cname TEXT NOT NULL
+--);
+
+--CREATE TABLE students(
+--id INTEGER PRIMARY KEY AUTOINCREMENT,
+--name1 TEXT NOT NULL,
+--name2 TEXT NOT NULL,
+--name3 TEXT NOT NULL,
+--name4 TEXT NOT NULL,
+--name5 TEXT NOT NULL
+--);
+
+--CREATE TABLE lessons(
+--id INTEGER PRIMARY KEY AUTOINCREMENT,
+--name1 TEXT NOT NULL,
+--name2 TEXT NOT NULL,
+--name3 TEXT NOT NULL,
+--name4 TEXT NOT NULL,
+--name5 TEXT NOT NULL
+--);
+
+--CREATE TABLE timetable(
+--id INTEGER PRIMARY KEY AUTOINCREMENT,
+--date TEXT
+--);
+
+--Заполнение
+
+--INSERT INTO timetable (date) VALUES ("2025-01-29"), ("2025-01-29"), ("2025-01-29"), ("2025-01-29"), ("2025-01-29");
+
+--INSERT INTO teachers (name) VALUES ("Anna"), ("Ogla"), ("Irina"), ("Max"), ("Oleg");
+
+--INSERT INTO classes (cname) VALUES ("2A"), ("2Б"), ("2В"), ("2Г"), ("2Д");
+
+--INSERT INTO students (name1, name2, name3, name4, name5) VALUES 
+--("Виктория", "Полина", "Irina", "Диана", "Кирилл"),
+--("Михаил", "Варвара", "Эмиль", "Ибрагим", "Эмилия"),
+--("Марк", "Алиса", "Анастасия", "Вадим", "Сергей"),
+--("Степан", "Арина", "Даниил", "Никита", "Иван"),
+--("Алёна", "Мирослава", "Вероника", "Марьяна", "Ярослав");
+
+--INSERT INTO lessons (name1, name2, name3, name4, name5) VALUES 
+--("Математика", "Русский язык", "Литература", "ИЗО", "Физкультура"),
+--("Русский", "Английский", "Окружающий мир", "Математика", "ИЗО"),
+--("Литература", "Математика", "Русский", "Английский", "Окружающий мир"),
+--("Физкультура", "Английский", "Математика", "ИЗО", "Русский"),
+--("ИЗО", "Английский", "Физра", "Русский", "Математика");
+
+--Соединение mp3
+--Я так и не понял, могу ли я соединить сразу несколько таблиц в одну, но как я понимаю, id всех таблиц должны были стать одинаковыми
+
+--Практика B
+
+--В1
+--UPDATE teachers
+--SET name = "Nikita"
+--WHERE id = 2;
+
+--B2
+--UPDATE lessons
+--SET name3 = "Окружающий мир"
+--WHERE id = 4;
+
+--B3 не смог нормлаьно настроить delete в случае с моей таблицей, так что использую update
+--UPDATE students
+--SET name3 = "-"
+--WHERE id = 1;
+
+--B4
+--DELETE FROM lessons
+--WHERE id = 2;
+
+--B5
+--UPDATE students
+--SET name5 = "-"
+--WHERE id = 2;
+--UPDATE students
+--SET name3 = "Эмилия"
+--WHERE id = 1;
+
+--Практика C
+
+--C1
+--SELECT students.name1, students.name2, students.name3, students.name4, students.name5, classes.cname
+--FROM classes, students
+-- classes.id = 1 AND students.id = 1;
+--SELECT students.name1, students.name2, students.name3, students.name4, students.name5, classes.cname
+--FROM classes, students
+--WHERE classes.id = 2 AND students.id = 2;
+--SELECT students.name1, students.name2, students.name3, students.name4, students.name5, classes.cname
+--FROM classes, students
+--WHERE classes.id = 3 AND students.id = 3;
+--SELECT students.name1, students.name2, students.name3, students.name4, students.name5, classes.cname
+--FROM classes, students
+--WHERE classes.id = 4 AND students.id = 4;
+--SELECT students.name1, students.name2, students.name3, students.name4, students.name5, classes.cname
+--FROM classes, students
+--WHERE classes.id = 5 AND students.id = 5;
+
+--C2
+--SELECT lessons.name1, lessons.name2, lessons.name3, lessons.name4, lessons.name5
+--FROM lessons
+--WHERE lessons.id = 4
+
+--С3, именно здесь я окончательно понял, что вообще не понимаю, как должна выглядеть таблица/ы
+
+
+
