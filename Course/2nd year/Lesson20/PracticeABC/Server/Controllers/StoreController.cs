@@ -26,16 +26,27 @@ public class StoreController : ControllerBase
         [Route("/store/updateprice")]
         public IActionResult UpdatePrice(string name, double newPrice)
         {
-            var product = _productRepository.GetProductByName(name);
-            if (product != null)
+            try
             {
-                product.Price = newPrice;
-                _productRepository.UpdateProduct(product);
-                return Ok($"{name} обновлен с новой ценой: {newPrice}");
+                var product = _productRepository.GetProductByName(name);
+                if (product != null)
+                {
+                    product.Price = newPrice;
+                    _productRepository.UpdateProduct(product);
+                    return Ok($"{name} обновлен с новой ценой: {newPrice}");
+                }
+                else
+                {
+                    return NotFound($"Продукт {name} не найден");
+                }
             }
-            else
+            catch (KeyNotFoundException ex)
             {
-                return NotFound($"Продукт {name} не найден");
+                throw (ex);
+            }
+            catch (Exception ex)
+            {
+                throw (ex);
             }
         }
 
@@ -43,16 +54,27 @@ public class StoreController : ControllerBase
         [Route("/store/updatename")]
         public IActionResult UpdateName(string currentName, string newName)
         {
-            var product = _productRepository.GetProductByName(currentName);
-            if (product != null)
+            try
             {
-                product.Name = newName;
-                _productRepository.UpdateProduct(product);
-                return Ok($"Имя продукта изменено с {currentName} на {newName}");
+                var product = _productRepository.GetProductByName(currentName);
+                if (product != null)
+                {
+                    product.Name = newName;
+                    _productRepository.UpdateProduct(product);
+                    return Ok($"Имя продукта изменено с {currentName} на {newName}");
+                }
+                else
+                {
+                    return NotFound($"Продукт {currentName} не найден");
+                }
             }
-            else
+            catch (KeyNotFoundException ex)
             {
-                return NotFound($"Продукт {currentName} не найден");
+                throw (ex);
+            }
+            catch (Exception ex)
+            {
+                throw (ex);
             }
         }
 
@@ -60,14 +82,25 @@ public class StoreController : ControllerBase
         [Route("/store/outofstock")]
         public IActionResult OutOfStock()
         {
-            var outOfStockItems = _productRepository.GetAllProducts().Where(p => p.Stock == 0).ToList();
-            if (outOfStockItems.Any())
+            try
             {
-                return Ok(outOfStockItems);
+                var outOfStockItems = _productRepository.GetAllProducts().Where(p => p.Stock == 0).ToList();
+                if (outOfStockItems.Any())
+                {
+                    return Ok(outOfStockItems);
+                }
+                else
+                {
+                    return Ok("Все продукты в наличии");
+                }
             }
-            else
+            catch (KeyNotFoundException ex)
             {
-                return Ok("Все продукты в наличии");
+                throw (ex);
+            }
+            catch (Exception ex)
+            {
+                throw (ex);
             }
         }
 
@@ -75,13 +108,24 @@ public class StoreController : ControllerBase
         [Route("/store/auth")]
         public IActionResult Auth([FromBody] UserCredentials user)
         {
-            if ((user.user == "admin") && (user.pass == "123"))
+            try
             {
-                return Ok($"{user.user} авторизован");
+                if ((user.user == "admin") && (user.pass == "123"))
+                {
+                    return Ok($"{user.user} авторизован");
+                }
+                else
+                {
+                    return NotFound($"{user.user} не найден");
+                }
             }
-            else
+            catch (KeyNotFoundException ex)
             {
-                return NotFound($"{user.user} не найден");
+                throw (ex);
+            }
+            catch (Exception ex)
+            {
+                throw (ex);
             }
         }
 
@@ -89,23 +133,45 @@ public class StoreController : ControllerBase
         [Route("/store/add")]
         public IActionResult Add([FromBody] Product newProduct)
         {
-            _productRepository.AddProduct(newProduct);
-            return Ok(_productRepository.GetAllProducts());
+            try
+            {
+                _productRepository.AddProduct(newProduct);
+                return Ok(_productRepository.GetAllProducts());
+            }
+            catch (KeyNotFoundException ex)
+            {
+                throw (ex);
+            }
+            catch (Exception ex)
+            {
+                throw (ex);
+            }
         }
 
         [HttpPost]
         [Route("/store/delete")]
         public IActionResult Delete(string name)
         {
-            var product = _productRepository.GetProductByName(name);
-            if (product != null)
+            try
             {
-                _productRepository.DeleteProduct(name);
-                return Ok($"{name} удален");
+                var product = _productRepository.GetProductByName(name);
+                if (product != null)
+                {
+                    _productRepository.DeleteProduct(name);
+                    return Ok($"{name} удален");
+                }
+                else
+                {
+                    return NotFound($"{name} не найден");
+                }
             }
-            else
+            catch (KeyNotFoundException ex)
             {
-                return NotFound($"{name} не найден");
+                throw (ex);
+            }
+            catch (Exception ex)
+            {
+                throw (ex);
             }
         }
 
@@ -113,7 +179,18 @@ public class StoreController : ControllerBase
         [Route("/store/show")]
         public IActionResult Show()
         {
-            return Ok(_productRepository.GetAllProducts());
+            try
+            {
+                return Ok(_productRepository.GetAllProducts());
+            }
+            catch (KeyNotFoundException ex)
+            {
+                throw (ex);
+            }
+            catch (Exception ex)
+            {
+                throw (ex);
+            }
         }
       
 

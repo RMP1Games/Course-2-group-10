@@ -13,9 +13,9 @@
 
 1. Рефакторинг серверной части [Server/StoreController.cs]
 
--  В функции [WriteDataToFile] вынести работу с json в отдельную функцию                [ConvertTextDBToList]
--  В функции [WriteDataToFile] вынести работу с файлом в отдельную функцию              [ReadDB]
--  В функции [WriteDataToFile] вынести проверку сущестования файла в отдельную функцию  [DBExist]
+-  В функции [ReadDataFromFile] вынести работу с json в отдельную функцию                [ConvertTextDBToList]
+-  В функции [ReadDataFromFile] вынести работу с файлом в отдельную функцию              [ReadDB]
+-  В функции [ReadDataFromFile] вынести проверку сущестования файла в отдельную функцию  [DBExist]
 
 ---
 # Практика C:

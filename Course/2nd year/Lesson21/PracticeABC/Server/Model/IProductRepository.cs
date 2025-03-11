@@ -1,65 +1,37 @@
-namespace PracticeABC;
-
+using System;
 using System.Data.SQLite; 
 using System.Collections.Generic; 
 
-public class SqlLiteProductRepository : IProductRepository
+
+namespace PracticeABC;
+
+public interface IProductRepository
 {
-    private readonly string _connectionString;
-    private List<Product> products = new List<Product>();
-    private const string CreateTableQuery = @"
-        CREATE TABLE IF NOT EXISTS Products (
-            Id INTEGER PRIMARY KEY,
-            Name TEXT NOT NULL,
-            Price REAL NOT NULL,
-            Stock INTEGER NOT NULL
-        )";
-    public SqlLiteProductRepository(string connectionString)
+    //private readonly string _connectionString;
+    public List<Product> GetAllProducts(string _connectionString)
     {
-        _connectionString = connectionString;
-        InitializeDatabase();
-        ReadDataFromDatabase();
+        List<Product> products = new List<Product>();
+        using (SQLiteConnection connection = new SQLiteConnection(_connectionString))
+        {
+            connection.Open();
+            string query = "SELECT * FROM Products";
+            using (SQLiteCommand command = new SQLiteCommand(query, connection))
+            {
+                using (SQLiteDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        Product product = new Product(reader["Name"].ToString(),Convert.ToDouble(reader["Price"]),Convert.ToInt32(reader["Stock"])); 
+                        products.Add(product);
+                    }
+                }
+            }
+        }
+        return products;
     }
 
-    private void ReadDataFromDatabase()
-    {
-        products = GetAllProducts(string _connectionString);
-    }
 
-    private void InitializeDatabase()
-    {
-        SQLiteConnection connection = new SQLiteConnection(_connectionString); 
-        Console.WriteLine("База данных :  " + _connectionString + " создана");
-        connection.Open();
-        SQLiteCommand command = new SQLiteCommand(CreateTableQuery, connection);
-        command.ExecuteNonQuery();
-             
-        
-    }
-
-    //public List<Product> GetAllProducts()
-    // {
-    //     List<Product> products = new List<Product>();
-    //     using (SQLiteConnection connection = new SQLiteConnection(_connectionString))
-    //     {
-    //         connection.Open();
-    //         string query = "SELECT * FROM Products";
-    //         using (SQLiteCommand command = new SQLiteCommand(query, connection))
-    //         {
-    //             using (SQLiteDataReader reader = command.ExecuteReader())
-    //             {
-    //                 while (reader.Read())
-    //                 {
-    //                     Product product = new Product(reader["Name"].ToString(),Convert.ToDouble(reader["Price"]),Convert.ToInt32(reader["Stock"])); 
-    //                     products.Add(product);
-    //                 }
-    //             }
-    //         }
-    //     }
-    //     return products;
-    // }
-
-    public Product GetProductByName(string name)
+    public Product GetProductByName(string name, string _connectionString)
     {
         using (SQLiteConnection connection = new SQLiteConnection(_connectionString))
         {
@@ -82,7 +54,8 @@ public class SqlLiteProductRepository : IProductRepository
         }
     }
 
-    public void AddProduct(Product product)
+
+    public void AddProduct(Product product, string _connectionString)
     {
         using (SQLiteConnection connection = new SQLiteConnection(_connectionString))
         {
@@ -98,7 +71,8 @@ public class SqlLiteProductRepository : IProductRepository
         }
     }
 
-    public void UpdateProduct(Product product)
+
+    public void UpdateProduct(Product product, string _connectionString)
     {
         using (SQLiteConnection connection = new SQLiteConnection(_connectionString))
         {
@@ -114,7 +88,7 @@ public class SqlLiteProductRepository : IProductRepository
         }
     }
 
-    public void DeleteProduct(string name)
+    public void DeleteProduct(string name, string _connectionString)
     {
         using (SQLiteConnection connection = new SQLiteConnection(_connectionString))
         {
@@ -128,4 +102,3 @@ public class SqlLiteProductRepository : IProductRepository
         }
     }
 }
-

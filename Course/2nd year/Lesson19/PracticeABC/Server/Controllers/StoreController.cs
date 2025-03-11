@@ -9,6 +9,7 @@ using System.Net.Http;
 using System.Text; 
 using System.Threading.Tasks;
 using System.Collections.Generic;
+using DBRepository;
 [ApiController]
 public class StoreController : ControllerBase
 {
@@ -47,6 +48,7 @@ public class StoreController : ControllerBase
     private List<Product> Items = new List<Product>();
 
     private readonly string _jsonFilePath = "DataBase.json";
+    private readonly string _jsonBackupPath = "BackupDB.json";
 
     public StoreController()
     {
@@ -156,50 +158,4 @@ public class StoreController : ControllerBase
     {
         return Ok(Items);
     }
- 
-
-    private List<Product> ConvertTextDBToList(string json)
-    {
-        return JsonSerializer.Deserialize<List<Product>>(json)
-    }
-
-    private string ReadDB()
-    {
-        return System.IO.File.ReadAllText(_jsonFilePath);
-    }
-
-    private bool DBExist()
-    {
-        return System.IO.File.Exists(_jsonFilePath);
-    }
-
-    private void ReadDataFromFile()
-    {
-        if (DBExist())
-        { 
-            Items =  ConvertTextDBToList(ReadDB());
-        }
-    }
-
-    #endregion
- 
-
-    private string  ConvertDBtoJson()
-    {
-        var options = new JsonSerializerOptions { WriteIndented = true };
-        retunr JsonSerializer.Serialize(Items, options);
-    }
-
-    private void WriteTiDB(string json)
-    {
-        System.IO.File.WriteAllText(_jsonFilePath, json);
-    }
-
-    private void WriteDataToFile()
-    { 
-        WriteTiDB(ConvertDBtoJson());
-    }
- 
-
-
 }

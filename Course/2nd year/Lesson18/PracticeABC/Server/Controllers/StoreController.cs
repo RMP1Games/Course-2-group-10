@@ -9,6 +9,8 @@ using System.Net.Http;
 using System.Text; 
 using System.Threading.Tasks;
 using System.Collections.Generic;
+using PracticeABC.Server.Models.PracticeA;
+using PracticeABC.Server.Models.PracticeB;
 [ApiController]
 public class StoreController : ControllerBase
 {
@@ -159,19 +161,11 @@ public class StoreController : ControllerBase
 
     private void ReadDataFromFile()
     {
-        if (System.IO.File.Exists(_jsonFilePath))
-        {
-            string json = System.IO.File.ReadAllText(_jsonFilePath);
-            Items = JsonSerializer.Deserialize<List<Product>>(json);
-        }
+        ReadDB(ConvertTextDBToList(DBExist(_jsonFilePath), _jsonFilePath), Items);
     }
 
     private void WriteDataToFile()
     {
-        var options = new JsonSerializerOptions { WriteIndented = true };
-        string json = JsonSerializer.Serialize(Items, options);
-        System.IO.File.WriteAllText(_jsonFilePath, json);
+        WriteToDB(ConvertDBtoJson(Items));
     }
-
-
 }
