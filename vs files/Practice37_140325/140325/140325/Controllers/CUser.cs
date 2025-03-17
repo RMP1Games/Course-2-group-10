@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using _110325logical.Models;
+using _140325.Models;
+using _140325.Services.Interfaces;
 
-namespace _110325logical.Controllers
+namespace _140325.Controllers
 {
-    internal class CUser
+    internal class CUser : ICUser
     {
-      public static List<User> Users = new List<User>();
+        public static List<User> Users = new List<User>();
         public void CreateUser(int Id, string Name, string Email)
         {
             User newuser = new User();
