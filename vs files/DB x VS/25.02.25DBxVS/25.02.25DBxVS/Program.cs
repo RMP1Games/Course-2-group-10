@@ -5,6 +5,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
+using _25._02._25DBxVS.Services;
+using _25._02._25DBxVS.Interfaces;
+using _25._02._25DBxVS.Services.Repositories;
+using _25._02._25DBxVS.Models;
 
 namespace EFDataApp
 {

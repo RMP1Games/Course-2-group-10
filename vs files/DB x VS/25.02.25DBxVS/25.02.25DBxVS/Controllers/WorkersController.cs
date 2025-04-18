@@ -1,5 +1,6 @@
 ﻿using _25._02._25DBxVS.Models;
 using Microsoft.AspNetCore.Mvc;
+using _25._02._25DBxVS.Interfaces;
 
 namespace _25._02._25DBxVS.Controllers
 {

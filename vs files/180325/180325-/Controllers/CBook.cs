@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using _180325_.Models;
+using _180325_.Services.Interfaces;
 
 namespace _180325_.Controllers
 {
-    internal class CBook
+    internal class CBook : ICBook
     {
         public static List<Book> Books = new List<Book>();
         public void CreateBook(string Name, string Author, string Genre)

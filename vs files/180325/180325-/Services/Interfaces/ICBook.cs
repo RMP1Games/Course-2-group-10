@@ -9,9 +9,9 @@ namespace _180325_.Services.Interfaces
 {
     internal interface ICBook
     {
-        void CreateUser(string Name, string Author, string Genre);
-        void UpdateUser(Book bookToChange, string Name, string Author, string Genre);
-        void DeleteUser(Book book);
+        void CreateBook(string Name, string Author, string Genre);
+        void UpdateBook(Book bookToChange, string Name, string Author, string Genre);
+        void DeleteBook(Book book);
         List<Book> GetBooks();   
     }
 }
