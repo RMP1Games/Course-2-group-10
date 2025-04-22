@@ -17,5 +17,8 @@ namespace proekt.Models
         string examples {  get; set; }
         [Required]
         string authorUsername { get; set; }
+        public int likes { get; set; }
+        public int dislikes { get; set; }
+        public List<string> comments { get; set; }
     }
 }
