@@ -19,6 +19,6 @@ namespace proekt.Models
         string authorUsername { get; set; }
         public int likes { get; set; }
         public int dislikes { get; set; }
-        public List<string> comments { get; set; }
+        //если бы было много таблиц, то нужно добавить еще одну переменную , в которою будет храниться информация по типу "Comments.json", чтобы при запросах получать нужный файл с комментариями
     }
 }
